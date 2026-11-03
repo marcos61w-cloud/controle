@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { supabase, isSupabaseConfigured } from "./lib/supabase";
 import { LayoutDashboard, Package, ShoppingCart, Wallet, ChartNoAxesCombined, FileDown, Settings, LogOut, Plus, Search, Menu, X, Smartphone, TrendingUp, Clock3, AlertTriangle, Mail, MessageCircle, LockKeyhole } from "lucide-react";
 import { jsPDF } from "jspdf";
@@ -6,7 +6,7 @@ import autoTable from "jspdf-autotable";
 
 type Product = { id:string; name:string; category:string|null; brand:string|null; model:string|null; };
 type Lot = { id:string; product_id:string; quantity_in:number; quantity_remaining:number; unit_cost:number; planned_price:number; purchase_date:string; supplier:string|null; invoice_number:string|null; };
-type Sale = { id:string; sold_at:string; payment_method:string; };
+type Sale = { id:string; sold_at:string; payment_method:string; status?:string; };
 type SaleItem = { id:string; sale_id:string; product_id:string; quantity:number; unit_cost:number; unit_price:number; fees:number; };
 type Tab = "dashboard"|"stock"|"sales"|"finance"|"reports"|"settings";
 const money = (n:number) => n.toLocaleString("pt-BR",{style:"currency",currency:"BRL"});
